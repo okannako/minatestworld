@@ -78,7 +78,7 @@ docker run --env-file .env --name mina -d \
 --restart=always \
 --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
 --mount "type=bind,source=`pwd`/.mina-config,dst=/home/$username/.mina-config" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup4-55b7818-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley \
 daemon \
 --block-producer-key /home/$username/keys/my-wallet \
 --peer-list-url  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
