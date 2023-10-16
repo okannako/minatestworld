@@ -19,6 +19,7 @@
 sudo adduser username
 sudo visudo
 username= <the name you type instead of the username>
+echo $username
 ```
 - After writing the codes above, we find the line ```root ALL=(ALL:ALL) ALL``` below and enter it as follows > ```username ALL=(ALL:ALL) ALL```. After that > CTRL+X Y Enter
 ```
