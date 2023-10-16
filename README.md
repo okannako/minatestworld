@@ -68,27 +68,7 @@ nano .env
 UPTIME_PRIVKEY_PASS="password"
 MINA_LIBP2P_PASS="password"
 MINA_PRIVKEY_PASS="password"
-EXTRA_FLAGS="--log-json \
---log-snark-work-gossip true \
---internal-tracing \
---insecure-rest-server \
---log-level Debug \
---file-log-level Debug \
---config-directory /home/$username/.mina-config/ \
---external-ip $(wget -qO- eth0.me) \
---itn-keys  f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
---itn-graphql-port 3089 \
---uptime-submitter-key  /home/$username/keys/my-wallet \
---uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit \
---metrics-port 10001 \
---enable-peer-exchange  true \
---libp2p-keypair /home/$username/keys/my-libp2p-key \
---log-precomputed-blocks true \
---max-connections 200 \
---generate-genesis-proof  true \
---node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats \
---node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats \
---file-log-rotations 500"
+EXTRA_FLAGS="--log-json --log-snark-work-gossip true --internal-tracing --insecure-rest-server --log-level Debug --file-log-level Debug --config-directory /home/$username/.mina-config/ --external-ip $(wget -qO- eth0.me) --itn-keys  f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= --itn-graphql-port 3089 --uptime-submitter-key  /home/$username/keys/my-wallet --uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit --metrics-port 10001 --enable-peer-exchange  true --libp2p-keypair /home/$username/keys/my-libp2p-key --log-precomputed-blocks true --max-connections 200 --generate-genesis-proof  true --node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats --node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats --file-log-rotations 500"
 ```
 
 ### Run Docker
