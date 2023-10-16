@@ -82,7 +82,7 @@ EXTRA_FLAGS="--log-json \
 --uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit \
 --metrics-port 10001 \
 --enable-peer-exchange  true \
---libp2p-keypair /home/$username/keys/libp2p-key \
+--libp2p-keypair /home/$username/keys/my-libp2p-key \
 --log-precomputed-blocks true \
 --max-connections 200 \
 --generate-genesis-proof  true \
