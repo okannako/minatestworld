@@ -12,6 +12,9 @@
 ## Installation Codes
 
 ### Create a User
+
+- It wants you to set a password when creating a user. (I recommend your creation). When it asks for a password, it won't appear on the screen when you press the keys, but it saves it in the background. Please be careful.
+
 ```
 sudo adduser username
 sudo visudo
