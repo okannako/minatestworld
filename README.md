@@ -6,9 +6,90 @@
 ## Tavsiye Edilen Sistem Gereksinimleri
 - CPU: 8 Core
 - RAM: 16GB
-- SSD: 10gb
+- SSD: 10GB
 - İşletim Sistemi: Ubuntu 20.04LTS
 
-## Yükleme Kodları
+## Installation Codes
 
-- Güncellemeler
+### Create a User
+```
+sudo adduser username
+sudo visudo
+username= <the name you type instead of the username>
+```
+- After writing the codes above, we find the line ```root ALL=(ALL:ALL) ALL``` below and enter it as follows > ```username ALL=(ALL:ALL) ALL```. After that > CTRL+X Y Enter
+```
+sudo usermod -a -G sudo username
+sudo su - username
+```
+
+### Updates & Docker
+```
+sudo apt update
+curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+sudo chmod 666 /var/run/docker.sock
+```
+
+### Peer & Key
+
+- We download the information that comes with the mail to our computer and use it here.
+- We exit the nano screen by pressing these keys > CTRL+X Y Enter
+```
+wget -O ~/peers.txt  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
+mkdir $HOME/.mina-config
+mkdir ~/keys
+sudo chmod 700 ~/keys
+sudo apt-get install nano
+sudo nano ~/keys/my-wallet
+sudo chmod 600 ~/keys/my-wallet
+sudo nano ~/keys/my-wallet.pub
+sudo chmod 600 ~/keys/my-wallet.pub 
+```
+
+### Generation of libp2p Keypair
+```
+mina libp2p generate-keypair -privkey-path ~/keys/my-libp2p-key
+```
+
+### Create .env 
+```
+nano .env
+```
+```
+UPTIME_PRIVKEY_PASS="password"
+MINA_LIBP2P_PASS="password"
+MINA_PRIVKEY_PASS="password"
+EXTRA_FLAGS="--log-json \
+--log-snark-work-gossip true \
+--internal-tracing \
+--insecure-rest-server \
+--log-level Debug \
+--file-log-level Debug \
+--config-directory /home/$username/.mina-config/ 
+--external-ip $(wget -qO- eth0.me) \
+--itn-keys  f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
+--itn-graphql-port 3089 \
+--uptime-submitter-key  /home/$username/keys/my-wallet \
+--uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit 
+--metrics-port 10001 \
+--enable-peer-exchange  true \
+--libp2p-keypair /home/$username/keys/libp2p-key \
+--log-precomputed-blocks true \
+--max-connections 200 \
+--generate-genesis-proof  true \
+--node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--file-log-rotations 500"
+```
+
+### Run Docker
+```
+docker run --env-file .env --name mina -d \
+-p 8302:8302 \
+--restart=always \
+--mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
+--mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
+http://gcr.io/o1labs-192920/mina-daemon:2.0.0rampup4-55b78189-CODENAME-berkeley \
+--block-producer-key /home/$username/keys/my-wallet \
+--peer-list-url  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
+```
