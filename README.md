@@ -9,23 +9,7 @@
 - SSD: 10GB
 - İşletim Sistemi: Ubuntu 20.04LTS
 
-## Installation Codes
-
-### Create a User
-
-- It wants you to set a password when creating a user. (I recommend your creation). When it asks for a password, it won't appear on the screen when you press the keys, but it saves it in the background. Please be careful.
-
-```
-sudo adduser username
-sudo visudo
-username= <the name you type instead of the username>
-echo $username
-```
-- After writing the codes above, we find the line ```root ALL=(ALL:ALL) ALL``` below and enter it as follows > ```username ALL=(ALL:ALL) ALL```. After that > CTRL+X Y Enter
-```
-sudo usermod -a -G sudo $username
-sudo su - $username
-```
+## Codes
 
 ### Updates & Docker
 ```
@@ -38,7 +22,6 @@ sudo chmod 666 /var/run/docker.sock
 ```
 
 ### Peer & Key
-
 - We download the information that comes with the mail to our computer and use it here.
 - We exit the nano screen by pressing these keys > CTRL+X Y Enter
 ```
@@ -51,35 +34,55 @@ sudo nano ~/keys/my-wallet
 sudo chmod 600 ~/keys/my-wallet
 sudo nano ~/keys/my-wallet.pub
 sudo chmod 600 ~/keys/my-wallet.pub
-sudo chown -R $username:$username ~/keys
-sudo chown -R $username:$username ~/keys/my-wallet 
+sudo chown -R root:root ~/keys
+sudo chown -R root:root ~/keys/my-wallet 
 ```
 
 ### Generation of libp2p Keypair
+- Don't forget to save the password you entered when creating the key.
 ```
 mina libp2p generate-keypair -privkey-path ~/keys/my-libp2p-key
 ```
 
-### Create .env 
-```
-nano .env
-```
-```
-UPTIME_PRIVKEY_PASS="password"
-MINA_LIBP2P_PASS="password"
-MINA_PRIVKEY_PASS="password"
-EXTRA_FLAGS="--log-json --log-snark-work-gossip true --internal-tracing --insecure-rest-server --log-level Debug --file-log-level Debug --config-directory /home/$username/.mina-config/ --external-ip $(wget -qO- eth0.me) --itn-keys  f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= --itn-graphql-port 3089 --uptime-submitter-key  /home/$username/keys/my-wallet --uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit --metrics-port 10001 --enable-peer-exchange  true --libp2p-keypair /home/$username/keys/my-libp2p-key --log-precomputed-blocks true --max-connections 200 --generate-genesis-proof  true --node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats --node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats --file-log-rotations 500"
-```
-
 ### Run Docker
+- For PRIVKEY_PASS, we enter the value written in the password file in the file received by mail into quotation marks. For LIBP2P_PASS, we enter the password that we entered in the previous step when creating the Generation of libp2p Keypair.
 ```
-docker run --env-file .env --name mina -d \
+docker run --name mina -d \
 -p 8302:8302 \
 --restart=always \
---mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley daemon \
---block-producer-key /home/$username/keys/my-wallet \
---peer-list-url  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
+-e MINA_PRIVKEY_PASS="password" \
+-e UPTIME_PRIVKEY_PASS="password" \
+-e MINA_LIBP2P_PASS="password" \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley \
+daemon \
+--block-producer-key /keys/my-wallet \
+--uptime-submitter-key /keys/my-wallet \
+--internal-tracing \
+--insecure-rest-server \
+--log-level Debug \
+--file-log-level Debug \
+--enable-peer-exchange true \
+--libp2p-keypair /keys/my-libp2p-key \
+--log-precomputed-blocks true \
+--external-ip $(wget -qO- eth0.me) \
+--max-connections 200 \
+--peer-list-url https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt  \
+--generate-genesis-proof true \
+--node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit  \
+--file-log-rotations 50 \
+--stop-time 24 \
+--itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
+--itn-graphql-port 3089 \
+--log-snark-work-gossip true
 ```
+
+- We go into the Docker with the following codes and look at the status of our node.
+```
+docker exec -it mina bash
+mina client status
+```
+
