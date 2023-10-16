@@ -47,7 +47,9 @@ sudo apt-get install nano
 sudo nano ~/keys/my-wallet
 sudo chmod 600 ~/keys/my-wallet
 sudo nano ~/keys/my-wallet.pub
-sudo chmod 600 ~/keys/my-wallet.pub 
+sudo chmod 600 ~/keys/my-wallet.pub
+sudo chown -R $username:$username ~/keys
+sudo chown -R $username:$username ~/keys/my-wallet 
 ```
 
 ### Generation of libp2p Keypair
