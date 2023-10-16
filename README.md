@@ -23,8 +23,8 @@ echo $username
 ```
 - After writing the codes above, we find the line ```root ALL=(ALL:ALL) ALL``` below and enter it as follows > ```username ALL=(ALL:ALL) ALL```. After that > CTRL+X Y Enter
 ```
-sudo usermod -a -G sudo username
-sudo su - username
+sudo usermod -a -G sudo $username
+sudo su - $username
 ```
 
 ### Updates & Docker
