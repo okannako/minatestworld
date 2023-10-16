@@ -76,9 +76,9 @@ EXTRA_FLAGS="--log-json --log-snark-work-gossip true --internal-tracing --insecu
 docker run --env-file .env --name mina -d \
 -p 8302:8302 \
 --restart=always \
---mount "type=bind,source=$(pwd)/.env,dst=/entrypoint.d/env,readonly" \
---mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
---mount "type=bind,source=`pwd`/.mina-config,dst=/home/$username/.mina-config" \
+--mount "type=bind,source=$(pwd)/.mina-env,dst=/entrypoint.d/mina-env,readonly" \
+--mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
+--mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
 gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley daemon \
 --block-producer-key /home/$username/keys/my-wallet \
 --peer-list-url  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
