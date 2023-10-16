@@ -46,6 +46,7 @@ mina libp2p generate-keypair -privkey-path ~/keys/my-libp2p-key
 
 ### Run Docker
 - For PRIVKEY_PASS, we enter the value written in the password file in the file received by mail into quotation marks. For LIBP2P_PASS, we enter the password that we entered in the previous step when creating the Generation of libp2p Keypair.
+- yournodeip, enter the ip address of the system where your node is running.
 ```
 docker run --name mina -d \
 -p 8302:8302 \
@@ -66,7 +67,7 @@ daemon \
 --enable-peer-exchange true \
 --libp2p-keypair /keys/my-libp2p-key \
 --log-precomputed-blocks true \
---external-ip $(wget -qO- eth0.me) \
+--external-ip yournodeip \
 --max-connections 200 \
 --peer-list-url https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt  \
 --generate-genesis-proof true \
