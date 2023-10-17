@@ -4,18 +4,16 @@
 
 - Friends, this guide is prepared only for Block Producer. If you proceed with the video (The video is in Turkish, but there are steps that are understood when you follow by watching.), you will install much more comfortably.
 
-## Tavsiye Edilen Sistem Gereksinimleri
+## Recommended Minimum System Requirements
 - CPU: 8 Core
 - RAM: 16GB
 - SSD: 10GB
-- İşletim Sistemi: Ubuntu 20.04LTS
+- Operating System: Ubuntu 20.04LTS
 
 ## Codes
 
 ### Updates & Docker
 ```
-sudo rm /etc/apt/sources.list.d/mina*.list
-echo "deb [trusted=yes] http://packages.o1test.net/ CODENAME rampup" | sudo tee /etc/apt/sources.list.d/mina-rampup.list
 sudo apt-get update
 sudo apt-get install -y mina-berkeley=2.0.0rampup5-55b7818
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
@@ -25,6 +23,7 @@ sudo chmod 666 /var/run/docker.sock
 ### Peer & Key
 - We download the information that comes with the mail to our computer and use it here.
 - We exit the nano screen by pressing these keys > CTRL+X Y Enter
+- The code that starts with my-wallet in ""box_primitive"". the address starting with B62 will be entered for my-wallet.hub
 ```
 wget -O ~/peers.txt  https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
 mkdir $HOME/.mina-config
