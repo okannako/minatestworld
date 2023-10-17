@@ -84,5 +84,5 @@ daemon \
 - Aşağıdaki kodlarla Docker'a giriyoruz ve node durumuna bakıyoruz.
 ```
 docker exec -it mina bash
-mina client status
+docker exec -it mina mina client status
 ```
