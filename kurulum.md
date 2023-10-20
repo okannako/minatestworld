@@ -50,6 +50,7 @@ mina libp2p generate-keypair -privkey-path ~/keys/my-libp2p-key
 ```
 docker run --name mina -d \
 -p 8302:8302 \
+-p 3089:3089 \
 --restart=always \
 --mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
 --mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
