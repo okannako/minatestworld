@@ -58,7 +58,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
@@ -107,7 +107,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup5-55b7818-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
@@ -136,5 +136,58 @@ daemon \
   - https://www.yougetsignal.com/tools/open-ports/
     ![m2](https://github.com/okannako/minatestworld/assets/73176377/ce9a2900-5d7b-42be-8430-7f113fbce88e)
 
+### Steps to Update October 23
+- Node Stop
+```
+docker stop mina
+docker rm mina
+```
+
+- Again Start
+```
+docker run --name mina -d \
+-p 8302:8302 \
+-p 3089:3089 \
+--restart=always \
+--mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
+--mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
+-e MINA_PRIVKEY_PASS="password" \
+-e UPTIME_PRIVKEY_PASS="password" \
+-e MINA_LIBP2P_PASS="password" \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+daemon \
+--block-producer-key /keys/my-wallet \
+--uptime-submitter-key /keys/my-wallet \
+--internal-tracing \
+--insecure-rest-server \
+--log-level Debug \
+--file-log-level Debug \
+--enable-peer-exchange true \
+--libp2p-keypair /keys/my-libp2p-key \
+--log-precomputed-blocks true \
+--external-ip yournodeip \
+--max-connections 200 \
+--peer-list-url https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt  \
+--generate-genesis-proof true \
+--node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit  \
+--file-log-rotations 50 \
+--stop-time 24 \
+--itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
+--itn-graphql-port 3089 \
+--log-snark-work-gossip true
+```
+
+-After doing this operation and after connecting the Mina node to the network, there are two operations that you will do, 1. port control. I posted it, you're checking it the same way again. The other is version control. When you enter the code at the bottom of it, you are looking at the ss section on the incoming screen, and the values written there should be as follows.
+```
+docker exec -it mina mina client status
+```
+![mina 2](https://github.com/okannako/minatestworld/assets/73176377/1def0cdf-bfda-499e-9b3f-eb9941d8aa40)
+
+```
+Git SHA-1: 4061884b18137c1182c7fcfa80f52804008a2509
+Chain ID: 332c8cc05ba8de9efc23a011f57015d8c9ec96fac81d5d3f7a06969faf4bce92
+```
 
 
