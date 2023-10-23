@@ -177,7 +177,7 @@ daemon \
 --log-snark-work-gossip true
 ```
 
--Bu işlemi yaptıktan sonra ve Mina node ağa bağlandıktan sonra yapacağınız iki işlem var bir port kontrol. Onu yayınlamıştım yine aynı şekilde kontrol ediyorsunuz. Diğeri de versiyon kontrol. Onuda alttaki kodu girdiğinizde gelen ekranda ss'de ki bölünme bakıyorsunuz ve orada yazan değerlerin aşağıdaki gibi olması gerekiyor.
+-Bu işlemi yaptıktan sonra ve Mina node ağa bağlandıktan sonra yapacağınız iki işlem var bir port kontrol. Onu yayınlamıştım yine aynı şekilde kontrol ediyorsunuz. Diğeri de versiyon kontrol. Onuda alttaki kodu girdiğinizde gelen ekranda ss'de ki bölüme bakıyorsunuz ve orada yazan değerlerin aşağıdaki gibi olması gerekiyor.
 ```
 docker exec -it mina mina client status
 ```
