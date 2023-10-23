@@ -134,3 +134,57 @@ daemon \
   - https://www.yougetsignal.com/tools/open-ports/
     ![m1](https://github.com/okannako/minatestworld/assets/73176377/eb5431e7-b63f-41a0-9e02-983ec6ddee91)
 
+### 23 Ekim Güncelleme Adımları
+- Node durduruyoruz.
+```
+docker stop mina
+docker rm mina
+```
+
+- Tekrar başlatıyoruz.
+```
+docker run --name mina -d \
+-p 8302:8302 \
+-p 3089:3089 \
+--restart=always \
+--mount "type=bind,source=$(pwd)/keys,dst=/keys,readonly" \
+--mount "type=bind,source=$(pwd)/.mina-config,dst=/root/.mina-config" \
+-e MINA_PRIVKEY_PASS="password" \
+-e UPTIME_PRIVKEY_PASS="password" \
+-e MINA_LIBP2P_PASS="password" \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+daemon \
+--block-producer-key /keys/my-wallet \
+--uptime-submitter-key /keys/my-wallet \
+--internal-tracing \
+--insecure-rest-server \
+--log-level Debug \
+--file-log-level Debug \
+--enable-peer-exchange true \
+--libp2p-keypair /keys/my-libp2p-key \
+--log-precomputed-blocks true \
+--external-ip yournodeip \
+--max-connections 200 \
+--peer-list-url https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt  \
+--generate-genesis-proof true \
+--node-status-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--node-error-url https://nodestats-itn.minaprotocol.tools/submit/stats \
+--uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit  \
+--file-log-rotations 50 \
+--stop-time 24 \
+--itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
+--itn-graphql-port 3089 \
+--log-snark-work-gossip true
+```
+
+-Bu işlemi yaptıktan sonra ve Mina node ağa bağlandıktan sonra yapacağınız iki işlem var bir port kontrol. Onu yayınlamıştım yine aynı şekilde kontrol ediyorsunuz. Diğeri de versiyon kontrol. Onuda alttaki kodu girdiğinizde gelen ekranda ss'de ki bölünme bakıyorsunuz ve orada yazan değerlerin aşağıdaki gibi olması gerekiyor.
+```
+docker exec -it mina mina client status
+```
+![mina 2](https://github.com/okannako/minatestworld/assets/73176377/1def0cdf-bfda-499e-9b3f-eb9941d8aa40)
+
+```
+Git SHA-1: 4061884b18137c1182c7fcfa80f52804008a2509
+Chain ID: 332c8cc05ba8de9efc23a011f57015d8c9ec96fac81d5d3f7a06969faf4bce92
+```
+
