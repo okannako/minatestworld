@@ -136,7 +136,7 @@ daemon \
   - https://www.yougetsignal.com/tools/open-ports/
     ![m2](https://github.com/okannako/minatestworld/assets/73176377/ce9a2900-5d7b-42be-8430-7f113fbce88e)
 
-### Steps to Update October 23
+### Steps to Update December 13
 - Node Stop
 ```
 docker stop mina
@@ -154,7 +154,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup7-4a0fff9-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
