@@ -152,7 +152,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup7-4a0fff9-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
