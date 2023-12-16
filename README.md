@@ -80,7 +80,8 @@ daemon \
 --stop-time 24 \
 --itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
 --itn-graphql-port 3089 \
---log-snark-work-gossip true
+--log-snark-work-gossip true \
+--itn-max-logs 10000
 ```
 
 - We go into the Docker with the following codes and look at the status of our node.
@@ -129,7 +130,8 @@ daemon \
 --stop-time 24 \
 --itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
 --itn-graphql-port 3089 \
---log-snark-work-gossip true
+--log-snark-work-gossip true \
+--itn-max-logs 10000
 ```
 
 - After waiting for your node to connect to the network (its duration varies depending on the system power), you can check it from the following site.
@@ -176,7 +178,8 @@ daemon \
 --stop-time 24 \
 --itn-keys f1F38+W3zLcc45fGZcAf9gsZ7o9Rh3ckqZQw6yOJiS4=,6GmWmMYv5oPwQd2xr6YArmU1YXYCAxQAxKH7aYnBdrk=,ZJDkF9EZlhcAU1jyvP3m9GbkhfYa0yPV+UdAqSamr1Q=,NW2Vis7S5G1B9g2l9cKh3shy9qkI1lvhid38763vZDU=,Cg/8l+JleVH8yNwXkoLawbfLHD93Do4KbttyBS7m9hQ= \
 --itn-graphql-port 3089 \
---log-snark-work-gossip true
+--log-snark-work-gossip true \
+--itn-max-logs 10000
 ```
 
 -After doing this operation and after connecting the Mina node to the network, there are two operations that you will do, 1. port control. I posted it, you're checking it the same way again. The other is version control. When you enter the code at the bottom of it, you are looking at the ss section on the incoming screen, and the values written there should be as follows.
