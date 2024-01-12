@@ -186,8 +186,7 @@ daemon \
 ```
 docker exec -it mina mina client status
 ```
-![chain](https://github.com/okannako/minatestworld/assets/73176377/bd06d10c-76ea-420c-af5b-2b9bee0b04b7)
-
+![minaaaa](https://github.com/okannako/minatestworld/assets/73176377/e17878f5-f207-4718-b232-8fb881bd222d)
 ```
 Git SHA-1: 56fa1dbcc36aa638c84cdc624adc407075a088a2
 Chain ID: 332c8cc05ba8de9efc23a011f57015d8c9ec96fac81d5d3f7a06969faf4bce92
