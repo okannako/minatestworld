@@ -17,7 +17,7 @@
 sudo rm /etc/apt/sources.list.d/mina*.list
 echo "deb [trusted=yes] http://packages.o1test.net/ focal rampup" | sudo tee /etc/apt/sources.list.d/mina-rampup.list
 sudo apt-get update
-sudo apt-get install -y mina-berkeley=2.0.0rampup7-4a0fff9
+sudo apt-get install -y mina-berkeley=2.0.0rampup8-56fa1db
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 sudo chmod 666 /var/run/docker.sock
 ```
@@ -58,7 +58,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup8-56fa1db-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
@@ -108,7 +108,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup6-4061884-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup8-56fa1db-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
@@ -156,7 +156,7 @@ docker run --name mina -d \
 -e MINA_PRIVKEY_PASS="password" \
 -e UPTIME_PRIVKEY_PASS="password" \
 -e MINA_LIBP2P_PASS="password" \
-gcr.io/o1labs-192920/mina-daemon:2.0.0rampup7-4a0fff9-focal-berkeley \
+gcr.io/o1labs-192920/mina-daemon:2.0.0rampup8-56fa1db-focal-berkeley \
 daemon \
 --block-producer-key /keys/my-wallet \
 --uptime-submitter-key /keys/my-wallet \
@@ -189,7 +189,7 @@ docker exec -it mina mina client status
 ![chain](https://github.com/okannako/minatestworld/assets/73176377/bd06d10c-76ea-420c-af5b-2b9bee0b04b7)
 
 ```
-Git SHA-1: 4a0fff9a2966d14b7a1c0ec00785cea9096b5341
+Git SHA-1: 56fa1dbcc36aa638c84cdc624adc407075a088a2
 Chain ID: 332c8cc05ba8de9efc23a011f57015d8c9ec96fac81d5d3f7a06969faf4bce92
 ```
 
