@@ -138,7 +138,7 @@ daemon \
   - https://www.yougetsignal.com/tools/open-ports/
     ![m2](https://github.com/okannako/minatestworld/assets/73176377/ce9a2900-5d7b-42be-8430-7f113fbce88e)
 
-### Steps to Update December 13
+### Steps to Update January 12
 - Node Stop
 ```
 docker stop mina
