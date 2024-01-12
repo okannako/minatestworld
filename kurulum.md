@@ -136,7 +136,7 @@ daemon \
   - https://www.yougetsignal.com/tools/open-ports/
     ![m1](https://github.com/okannako/minatestworld/assets/73176377/eb5431e7-b63f-41a0-9e02-983ec6ddee91)
 
-### 13 Aralık Güncelleme Adımları
+### 12 Ocak Güncelleme Adımları
 - Node durduruyoruz.
 ```
 docker stop mina
